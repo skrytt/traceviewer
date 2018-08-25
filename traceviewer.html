@@ -7,21 +7,26 @@
     <title>Trace Viewer</title>
   </head>
   <body>
-    <div class="welcome" id="app">{{ message }}</div>
-    <div class="viewer-container">
-      <div class="viewer-header-container">
+
+    <div class="viewer-container" id="viewer-container">
+
+      <div class="viewer-header-container" id="viewer-header-container">
         <div class="viewer-header-row">
           <span class="viewer-row-entry viewer-row-label">Viewer Header</span>
-          <span class="viewer-row-entry viewer-row-header-scale"></span>
+          <span class="viewer-row-entry viewer-header-row-scale"></span>
         </div>
       </div>
-      <div class="viewer-row-container" id="viewer-row-container">
-        <div class="viewer-row">
-          <span class="viewer-row-entry viewer-row-label">Viewer Row</span>
-          <span class="viewer-row-entry viewer-row-start-delay"></span>
-          <span class="viewer-row-entry viewer-row-duration"></span>
-        </div>
+
+      <div class="viewer-data-container" id="viewer-row-container">
+        <viewer-row
+          v-for="row in rows"
+          v-bind:key=row.id
+          v-bind:label=row.label
+          v-bind:start=row.start
+          v-bind:duration=row.duration
+        ></viewer-row>
       </div>
     </div>
+
   </body>
 </html>
