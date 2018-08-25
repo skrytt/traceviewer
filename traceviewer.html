@@ -17,13 +17,13 @@
         </div>
       </div>
 
-      <div class="viewer-data-container" id="viewer-row-container">
+      <div class="viewer-data-container" id="viewerrowcontainer">
         <viewer-row
-          v-for="row in rows"
+          v-for="row in rows_formatted"
           v-bind:key=row.id
           v-bind:label=row.label
-          v-bind:start=row.start
-          v-bind:duration=row.duration
+          v-bind:start=row.start_width
+          v-bind:duration=row.duration_width
         ></viewer-row>
       </div>
     </div>
