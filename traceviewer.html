@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="traceviewer.css">
+    <script src="traceviewer.js"></script>
+    <title>Trace Viewer</title>
+  </head>
+  <body>
+    <div class="welcome" id="app">{{ message }}</div>
+    <div class="viewer-container">
+      <div class="viewer-header-container">
+        <div class="viewer-header-row">
+          <span class="viewer-row-entry viewer-row-label">Viewer Header</span>
+          <span class="viewer-row-entry viewer-row-header-scale"></span>
+        </div>
+      </div>
+      <div class="viewer-row-container" id="viewer-row-container">
+        <div class="viewer-row">
+          <span class="viewer-row-entry viewer-row-label">Viewer Row</span>
+          <span class="viewer-row-entry viewer-row-start-delay"></span>
+          <span class="viewer-row-entry viewer-row-duration"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
