@@ -13,27 +13,24 @@ Vue.component('viewer-row', {
 })
 
 window.addEventListener('load', function() {
-  window.app = new Vue({
+  window.rowcontainer = new Vue({
     el: '#rowcontainer',
     data: {
       zoom: 1,
       rows: [
-        { id: 1, label: 'Foo', start:  0.0, duration: 40.0 },
-        { id: 2, label: 'Bar', start: 20.0, duration: 20.0 },
-        { id: 3, label: 'Baz', start: 40.0, duration: 50.0 }
       ]
     },
     computed: {
       rows_formatted: function () {
-        result = [];
-        zoom = this.zoom;
+        var result = [];
+        var zoom = this.zoom;
 
         this.rows.forEach(function(row) {
-          start_percent = Math.floor(row.start * zoom);
-          duration_percent = Math.floor(row.duration * zoom);
+          var start_percent = Math.floor(row.start * zoom);
+          var duration_percent = Math.floor(row.duration * zoom);
+          var end_percent = start_percent + duration_percent;
 
           // Remove invisible width from the start
-          end_percent = start_percent + duration_percent;
           if (end_percent < 0) {
             start_percent = 0;
             duration_percent = 0;
@@ -52,8 +49,8 @@ window.addEventListener('load', function() {
             duration_percent -= (end_percent - 100);
           }
 
-          start_time_str = `${row.start.toPrecision(3)}s`
-          duration_time_str = `${row.duration.toPrecision(3)}s`
+          var start_time_str = `${row.start.toPrecision(3)}s`
+          var duration_time_str = `${row.duration.toPrecision(3)}s`
           result.push({
             id: row.id,
             label: row.label,
@@ -68,4 +65,19 @@ window.addEventListener('load', function() {
       }
     }
   });
+
+  function handleFileSelect(evt) {
+    // TODO improve this
+    var reader = new FileReader();
+    var fileToRead = evt.target.files[0];
+
+    reader.addEventListener("loadend", function() {
+      var rows = JSON.parse(reader.result);
+      window.rowcontainer.rows = rows;
+    });
+
+    reader.readAsText(fileToRead);
+  }
+  document.getElementById('file-select-input').addEventListener('change', handleFileSelect, false);
 })
+

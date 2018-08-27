@@ -1,0 +1,7 @@
+[
+  { "id": 1, "label": "Foo", "start":  0.0, "duration": 40.0 },
+  { "id": 2, "label": "Bar", "start": 20.0, "duration": 20.0 },
+  { "id": 3, "label": "Baz", "start": 40.0, "duration": 50.0 },
+  { "id": 4, "label": "Bez", "start": 50.0, "duration": 15.0 },
+  { "id": 5, "label": "Boop", "start": 70.0, "duration": 30.0 }
+]

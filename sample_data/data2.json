@@ -1,0 +1,7 @@
+[
+  { "id": 1, "label": "AAA", "start":  0.0, "duration": 25.0 },
+  { "id": 2, "label": "BBB", "start": 5.0, "duration": 10.0 },
+  { "id": 3, "label": "CCC", "start": 15.0, "duration": 10.0 },
+  { "id": 4, "label": "DDD", "start": 30.0, "duration": 20.0 },
+  { "id": 5, "label": "EEE", "start": 50.0, "duration": 50.0 }
+]

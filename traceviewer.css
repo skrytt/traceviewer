@@ -1,13 +1,6 @@
 
-.welcome {
-  background-color: #e0e0e0;
-  margin: 10px 0 10px 0;
-  font-family: sans-serif;
-}
-
 .viewer-container {
   background-color: #ffffff;
-  margin: 0;
   font-family: sans-serif;
   box-sizing: border-box;
   border-style: solid;
@@ -26,7 +19,7 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 }
 
 .viewer-header-row {
@@ -34,7 +27,7 @@
 }
 
 .viewer-header-row-scale {
-  width: 50px;
+  padding: 0 5px 0 5px;
 }
 
 .viewer-data-container {
