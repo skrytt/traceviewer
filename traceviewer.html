@@ -11,19 +11,20 @@
     <div class="viewer-container" id="viewer-container">
 
       <div class="viewer-header-container" id="viewer-header-container">
-        <div class="viewer-header-row">
+        <div class="viewer-row viewer-header-row">
           <span class="viewer-row-entry viewer-row-label">Viewer Header</span>
           <span class="viewer-row-entry viewer-header-row-scale"></span>
         </div>
       </div>
 
-      <div class="viewer-data-container" id="viewerrowcontainer">
+      <div class="viewer-data-container" id="rowcontainer">
         <viewer-row
           v-for="row in rows_formatted"
           v-bind:key=row.id
           v-bind:label=row.label
-          v-bind:start=row.start_width
-          v-bind:duration=row.duration_width
+          v-bind:duration_time=row.duration_time
+          v-bind:start=row.start_percent
+          v-bind:duration=row.duration_percent
         ></viewer-row>
       </div>
     </div>

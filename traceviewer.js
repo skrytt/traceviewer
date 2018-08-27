@@ -1,23 +1,26 @@
 Vue.component('viewer-row', {
-  props: ['label', 'start', 'duration'],
+  props: ['label', 'start', 'duration', 'duration_time'],
   template: `
-    <div class="viewer-data-row">
+    <div class="viewer-row viewer-data-row">
       <span class="viewer-row-entry viewer-row-label">{{label}}</span>
-      <span class="viewer-row-entry viewer-data-row-start-delay" v-bind:style="{width: start}"></span>
-      <span class="viewer-row-entry viewer-data-row-duration" v-bind:style="{width: duration}">{{duration}}</span>
+      <span class="viewer-row-entry viewer-data-row-span-container">
+        <span class="viewer-data-row-duration" v-bind:style="{'margin-left': start, width: duration}">
+          {{duration_time}}
+        </span>
+      </span>
     </div>
   `
 })
 
 window.addEventListener('load', function() {
   window.app = new Vue({
-    el: '#viewerrowcontainer',
+    el: '#rowcontainer',
     data: {
       zoom: 1,
       rows: [
-        { id: 1, label: 'Foo', start:  0.0, duration: 50.0 },
+        { id: 1, label: 'Foo', start:  0.0, duration: 40.0 },
         { id: 2, label: 'Bar', start: 20.0, duration: 20.0 },
-        { id: 3, label: 'Baz', start: 40.0, duration: 60.0 }
+        { id: 3, label: 'Baz', start: 40.0, duration: 50.0 }
       ]
     },
     computed: {
@@ -26,13 +29,35 @@ window.addEventListener('load', function() {
         zoom = this.zoom;
 
         this.rows.forEach(function(row) {
-          start_width_px = Math.floor(row.start * zoom);
-          duration_width_px = Math.floor(row.duration * zoom);
+          start_percent = Math.floor(row.start * zoom);
+          duration_percent = Math.floor(row.duration * zoom);
+
+          // Remove invisible width from the start
+          end_percent = start_percent + duration_percent;
+          if (end_percent < 0) {
+            start_percent = 0;
+            duration_percent = 0;
+          }
+          if (start_percent < 0) {
+            duration_percent += start_percent;
+            start_percent = 0;
+          }
+
+          // Remove invisible width from the end
+          if (start_percent > 100) {
+            start_percent = 100;
+            duration_percent = 0;
+          }
+          if (end_percent > 100) {
+            duration_percent -= (end_percent - 100);
+          }
+
           result.push({
             id: row.id,
             label: row.label,
-            start_width: `${start_width_px}px`,
-            duration_width: `${duration_width_px}px`
+            duration_time: `${row.duration.toPrecision(3)}s`,
+            start_percent: `${start_percent}%`,
+            duration_percent: `${duration_percent}%`
           })
         });
 
