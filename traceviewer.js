@@ -52,12 +52,15 @@ window.addEventListener('load', function() {
             duration_percent -= (end_percent - 100);
           }
 
+          start_time_str = `${row.start.toPrecision(3)}s`
+          duration_time_str = `${row.duration.toPrecision(3)}s`
           result.push({
             id: row.id,
             label: row.label,
-            duration_time: `${row.duration.toPrecision(3)}s`,
-            start_percent: `${start_percent}%`,
-            duration_percent: `${duration_percent}%`
+            duration_time_str: duration_time_str,
+            start_percent_str: `${start_percent}%`,
+            duration_percent_str: `${duration_percent}%`,
+            title: `label: ${row.label}\r\nstart: ${start_time_str}\r\nduration: ${duration_time_str}`
           })
         });
 

@@ -22,9 +22,10 @@
           v-for="row in rows_formatted"
           v-bind:key=row.id
           v-bind:label=row.label
-          v-bind:duration_time=row.duration_time
-          v-bind:start=row.start_percent
-          v-bind:duration=row.duration_percent
+          v-bind:duration_time=row.duration_time_str
+          v-bind:start=row.start_percent_str
+          v-bind:duration=row.duration_percent_str
+          v-bind:title=row.title
         ></viewer-row>
       </div>
     </div>
